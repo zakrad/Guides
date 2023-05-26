@@ -1,4 +1,4 @@
-# Signing & Verofying Message Process
+# Signing & Verifying Message Process
 
 ## Requirements for EIP712
 
