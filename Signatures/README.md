@@ -268,6 +268,8 @@ By asserting the equivalence of the signer and owner addresses, we can ensure th
             v = uint8(signature[64]);
         }
 
+## Key points
+
 * Please take note that for off-chain verification purposes, we can utilize the same steps to generate domain and permit hashes (either manually or by utilizing the `TypedDataUtils.hashStruct` helper from _eth-sig-util_ library). Subsequently, we can create a digest from these hashes. Finally, we can use the `recoverAddress(digest, signature)` function from the _ethers_ library or the `recoverTypedSignature(data, signature, version)` function from the _eth-sig-util_ library to retrieve the signer's address.
 
 * In cases where the message structure includes arrays or recursive structs, it is necessary to define their respective types, ensuring that they are declared in the correct order.
@@ -288,3 +290,10 @@ By asserting the equivalence of the signer and owner addresses, we can ensure th
                 { name: "price", type: "uint256" },
             ],
         };
+
+
+* Keep in mind that certain security measures must be taken into consideration when verifying `v`, `r`, and `s` on-chain. These precautions are already handled if you use the OpenZeppelin contracts [ECDSA](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/cryptography/ECDSA.sol) implementation.
+
+# Finally
+
+You're all set! With this information, you can now confidently sign any EIP712 message and verify it both on-chain and off-chain. I hope that this guide, along with the provided sample code, will be helpful for you.
